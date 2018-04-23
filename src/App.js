@@ -1,3 +1,7 @@
+import React, { Component } from 'react';
+import { Results } from './components/Results';
+import Navigation from './components/Navigation';
+import axios from 'axios';
 import {
   Form,
   FormGroup,
@@ -6,12 +10,7 @@ import {
   Container,
   Row,
   Col } from 'reactstrap';
-import React, { Component } from 'react';
 import './App.css';
-
-import axios from 'axios';
-
-import { Results } from './components/Results';
 
 class App extends Component {
   state = {
@@ -37,14 +36,15 @@ class App extends Component {
 
   render() {
     return (
+      <div>
+      <Navigation />
       <Container>
+        <Row>
+        </Row>
         <Row>
           <Col xs="6">
             <Form onSubmit={ this.handleSubmit }>
               <FormGroup>
-                <Label for="searchBar">
-                  Recipe Search
-                </Label>
                 <Input
                   type="search"
                   id="searchBar"
@@ -58,6 +58,7 @@ class App extends Component {
         </Row>
           <Results recipeList={ this.state.recipeList } />
       </Container>
+      </div>
     );
   }
 }
