@@ -1,19 +1,63 @@
+import {
+  Form,
+  FormGroup,
+  Label,
+  Input,
+  Container,
+  Row,
+  Col } from 'reactstrap';
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
 
+import axios from 'axios';
+
+import { Results } from './components/Results';
+
 class App extends Component {
+  state = {
+    searchTerm: '',
+    recipeList: [],
+  }
+
+  handleInput = (e) => {
+    this.setState({ searchTerm: e.target.value });
+  };
+
+  handleSubmit = (e) => {
+    e.preventDefault();
+    axios.post('http://localhost:3030/api/edamam/', { ...this.state })
+      .then(results => {
+        console.log(results);
+        this.setState({
+          searchTerm: '',
+          recipeList: results.data,
+        })
+      })
+  }
+
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
-      </div>
+      <Container>
+        <Row>
+          <Col xs="6">
+            <Form onSubmit={ this.handleSubmit }>
+              <FormGroup>
+                <Label for="searchBar">
+                  Recipe Search
+                </Label>
+                <Input
+                  type="search"
+                  id="searchBar"
+                  placeholder="Search for a recipe"
+                  value={ this.state.searchTerm }
+                  onChange={ this.handleInput }
+                />
+              </FormGroup>
+            </Form>
+          </Col>
+        </Row>
+          <Results recipeList={ this.state.recipeList } />
+      </Container>
     );
   }
 }
