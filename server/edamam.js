@@ -17,6 +17,20 @@ const getRecipe = (req, res) => {
   })
 }
 
+const recipeDetails = (req, res) => {
+  const { id } = req.params;
+  console.log(id);
+  axios.get(`${baseUrl}?q=${id}&app_id=${apiId}&app_key=${apiKey}`)
+    .then(data => {
+      console.log(data);
+      res.status(200).json(data.data.hits[0]);
+    })
+    .catch(err => {
+      res.status(500).json(err);
+    })
+}
+
 module.exports = {
   getRecipe,
+  recipeDetails,
 }

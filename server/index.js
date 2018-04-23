@@ -15,6 +15,7 @@ app.use(cors());
 app.use(bodyParser.json());
 
 app.post('/api/edamam', edamam.getRecipe);
+app.post('/api/edamam/recipe/:id', edamam.recipeDetails);
 
 const PORT = 3030;
 
