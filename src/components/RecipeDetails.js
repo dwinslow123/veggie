@@ -1,6 +1,20 @@
 import React, { Component } from 'react';
 import Navigation from './Navigation';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
+import {
+  Container,
+  Row,
+  Col,
+  Card,
+  Button,
+  CardImg,
+  CardBody,
+  CardTitle,
+  CardText,
+  CardSubtitle,
+  ListGroup,
+  ListGroupItem } from 'reactstrap';
 
 class RecipeDetails extends Component {
   state = {
@@ -9,6 +23,7 @@ class RecipeDetails extends Component {
     healthLabels: [],
     image: '',
     ingredientLines: [],
+    url: '',
   }
 
   componentDidMount() {
@@ -23,28 +38,21 @@ class RecipeDetails extends Component {
         console.log(result);
         this.setState({
           label: result.data.recipe.label,
-          image: <img src={ result.data.recipe.image } alt={ result.data.recipe.label }/>,
+          image: result.data.recipe.image,
           dietLabels: result.data.recipe.dietLabels.map((line, i) => {
-            return (
-              <ul>
-                <li key={ i }>{ line }</li>
-              </ul>
-            )
+            return line + ' | ';
           }),
           healthLabels:  result.data.recipe.healthLabels.map((line, i) => {
-            return (
-              <ul>
-                <li key={ i }>{ line }</li>
-              </ul>
-            )
+            return line + ' | ';
           }),
           ingredientLines:  result.data.recipe.ingredientLines.map((line, i) => {
             return (
-              <ul>
-                <li key={ i }>{ line }</li>
-              </ul>
+              <ListGroup>
+                <ListGroupItem key={ i }>{ line }</ListGroupItem>
+              </ListGroup>
             )
           }),
+          url: result.data.recipe.url,
         })
       })
   }
@@ -53,12 +61,20 @@ class RecipeDetails extends Component {
     return (
       <div>
         <Navigation />
-        { this.state.label }
-        { this.state.image }
-        { this.state.dietLabels }
-        { this.state.healthLabels }
-        { this.state.ingredientLines }
-        { this.state.ingredients }        
+        <Container>
+          <Card>
+            <CardImg src={ this.state.image } alt={ this.state.label } />
+            <CardTitle>{ this.state.label }</CardTitle>
+            <CardSubtitle>
+              { this.state.dietLabels }
+              { this.state.healthLabels }
+            </CardSubtitle>
+            <CardBody>
+              { this.state.ingredientLines }
+              <a href={ this.state.url }><Button>Click here for the full recipe</Button></a>
+            </CardBody>
+          </Card>     
+        </Container>
       </div>
     )
   }

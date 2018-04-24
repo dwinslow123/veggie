@@ -2,6 +2,7 @@ import {
   ListGroup,
   ListGroupItem,
   Card,
+  Button,
   CardImg,
   CardText,
   CardBody,
@@ -18,11 +19,12 @@ export const Results = (props) => {
       return (
           <Card key={ i }>
             <CardImg top width="40%" height="40%" src={ recipe.recipe.image } alt={ recipe.recipe.label } />
+              <CardTitle className="text-center">{ recipe.recipe.label }</CardTitle>
             <CardBody>
-              <Link to={`/recipe/${recipe.recipe.label}`}><CardTitle><p>{ recipe.recipe.label }</p></CardTitle></Link>
               {recipe.recipe.ingredients.map((ingredient, i) => {
                 return <ListGroup key={ i }><ListGroupItem>{ ingredient.text }</ListGroupItem></ListGroup>
               })}
+              <Link to={`/recipe/${recipe.recipe.label}`}><Button>Find out more</Button></Link>
             </CardBody>
           </Card>
       )
