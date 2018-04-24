@@ -7,22 +7,19 @@ const apiId = process.env.EDAMAM_APP_ID;
 
 const getRecipe = (req, res) => {
   const { searchTerm } = req.body;
-  axios.get(`${baseUrl}?q=${searchTerm}&app_id=${apiId}&app_key=${apiKey}`)
+  axios.get(`${baseUrl}?q=${searchTerm}&app_id=${apiId}&app_key=${apiKey}&health=vegan`)
   .then(data => {
     res.status(200).json(data.data.hits);
   })
   .catch(err => {
-    console.log(err);
     res.status(500).json(err);
   })
 }
 
 const recipeDetails = (req, res) => {
   const { id } = req.params;
-  console.log(id);
   axios.get(`${baseUrl}?q=${id}&app_id=${apiId}&app_key=${apiKey}`)
     .then(data => {
-      console.log(data);
       res.status(200).json(data.data.hits[0]);
     })
     .catch(err => {

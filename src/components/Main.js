@@ -3,7 +3,9 @@ import { Results } from './Results';
 import Navigation from './Navigation';
 import axios from 'axios';
 import {
+  Button,
   Form,
+  Jumbotron,
   FormGroup,
   Input,
   Container,
@@ -37,6 +39,13 @@ class Main extends Component {
     return (
       <div>
       <Navigation />
+      <Jumbotron fluid>
+        <Container fluid className="text-center">
+          <h1 className="display-3">Welcome to Veggie.</h1>
+          <p className="lead">Every recipe you see will be 100% vegan.</p>
+          <p className="lead">Try it out!</p>
+        </Container>
+      </Jumbotron>
       <Container>
         <Row>
         </Row>
@@ -47,13 +56,14 @@ class Main extends Component {
                 <Input
                   type="search"
                   id="searchBar"
-                  placeholder="Search for a recipe"
+                  placeholder="Search for a recipe using an ingredient"
                   value={ this.state.searchTerm }
                   onChange={ this.handleInput }
                 />
               </FormGroup>
             </Form>
           </Col>
+          <Button onClick={ this.handleSubmit }>Search</Button>
         </Row>
           <Results recipeList={ this.state.recipeList } />
       </Container>

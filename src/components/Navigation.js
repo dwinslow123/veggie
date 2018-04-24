@@ -22,13 +22,13 @@ class Navigation extends Component {
   render() {
     return (
       <div>
-        <Navbar color="light" light expand="md">
+        <Navbar color="light" light expand="lg">
           <NavbarBrand href="/">Veggie</NavbarBrand>
           <NavbarToggler onClick={ this.toggle } />
           <Collapse isOpen={ this.state.isOpen } navbar>
             <Nav className="ml-auto" navbar>
               <NavItem>
-                <NavLink href="/login/">Login</NavLink>
+                <NavLink href="/login/" className="text-center">Login</NavLink>
               </NavItem>
             </Nav>
           </Collapse>
