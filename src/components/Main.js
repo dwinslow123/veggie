@@ -11,7 +11,7 @@ import {
   Container,
   Row,
   Col } from 'reactstrap';
-import '../App.css';
+import '../css/styles.css';
 
 class Main extends Component {
   state = {
@@ -46,24 +46,28 @@ class Main extends Component {
           <p className="lead">Try it out!</p>
         </Container>
       </Jumbotron>
-      <Container>
+      <Container className="bottom">
         <Row>
         </Row>
         <Row>
-          <Col xs="6">
+          <Col xs id="searchBar">
             <Form onSubmit={ this.handleSubmit }>
               <FormGroup>
                 <Input
                   type="search"
                   id="searchBar"
-                  placeholder="Search for a recipe using an ingredient"
+                  placeholder="ingredient"
                   value={ this.state.searchTerm }
                   onChange={ this.handleInput }
                 />
               </FormGroup>
             </Form>
           </Col>
-          <Button onClick={ this.handleSubmit }>Search</Button>
+        </Row>
+        <Row>
+          <Col xs>
+            <Button onClick={ this.handleSubmit }>Search</Button>
+          </Col>
         </Row>
           <Results recipeList={ this.state.recipeList } />
       </Container>

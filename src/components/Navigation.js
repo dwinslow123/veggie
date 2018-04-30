@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import {
   Collapse,
   Navbar,
-  NavbarToggler,
   NavbarBrand,
+  NavbarToggler,
   Nav,
   NavItem,
   NavLink } from 'reactstrap';
@@ -28,7 +28,7 @@ class Navigation extends Component {
           <Collapse isOpen={ this.state.isOpen } navbar>
             <Nav className="ml-auto" navbar>
               <NavItem>
-                <NavLink href="/login/" className="text-center">Login</NavLink>
+                <NavLink href="/login/">Login / Sign Up</NavLink>
               </NavItem>
             </Nav>
           </Collapse>
