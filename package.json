@@ -27,5 +27,8 @@
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
     "scss": "node-sass --watch src/scss -o src/css"
+  },
+  "devDependencies": {
+    "firebase": "^5.0.4"
   }
 }

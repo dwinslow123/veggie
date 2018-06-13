@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import * as routes from '../constants/routes';
+
 import {
   Collapse,
   Navbar,
@@ -23,12 +25,12 @@ class Navigation extends Component {
     return (
       <div>
         <Navbar color="light" light expand="lg">
-          <NavbarBrand href="/">Veggie</NavbarBrand>
+          <NavbarBrand href={ routes.LANDING }>Veggie</NavbarBrand>
           <NavbarToggler onClick={ this.toggle } />
           <Collapse isOpen={ this.state.isOpen } navbar>
             <Nav className="ml-auto" navbar>
               <NavItem>
-                <NavLink href="/login/">Login / Sign Up</NavLink>
+                <NavLink href={ routes.SIGN_IN }>Login / Sign Up</NavLink>
               </NavItem>
             </Nav>
           </Collapse>
